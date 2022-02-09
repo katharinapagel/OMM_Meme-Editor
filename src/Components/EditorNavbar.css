@@ -1,0 +1,13 @@
+.container{
+    margin-top: 50px;
+}
+
+/*style of skip button to switch between memes */
+.Upload{
+    background-color: black;
+}
+
+/*style of  button to generate memes */
+.generate {
+    background-color: coral;
+}
