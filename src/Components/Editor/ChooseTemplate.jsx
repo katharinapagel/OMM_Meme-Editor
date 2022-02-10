@@ -66,7 +66,7 @@ class Overview extends React.Component {
     fetch("https://api.imgflip.com/get_memes")
       .then(data => data.json())
       .then(response => {
-        const { memes } = response.data;
+        const { memes } = response.data;       //response.data.url = url des bildes
         this.setState({ allMemeImgs: memes });
       });
   }
