@@ -1,12 +1,12 @@
 import React from 'react';
 import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
 import Navbar from './Components/Navbar';
-import Editor from "./Components/Editor";
+import Editor from "./Components/Editor/Editor";
 import Overview from "./Components/Overview";
 import Account from "./Components/Account";
-import MemeGenerator from './Components/EditorYGWYS';
+import MemeGenerator from './Components/Editor/EditorYGWYS';
 import LandingPage from './Components/LandingPage';
-import ChooseTemplate from './Components/ChooseTemplate';
+import ChooseTemplate from './Components/Editor/ChooseTemplate';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';

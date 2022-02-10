@@ -1,5 +1,5 @@
 import React from "react";
-import "./EditorNavbar.css";
+import "./Editor.css";
 import {Link} from "react-router-dom";
 
 import { useNavigate } from "react-router-dom";
@@ -12,7 +12,7 @@ function EditorNavbar() {
     }
     return (
         <div>
-           <button onClick= { handleClick }><Link className="link" to="/editor/choosetemplate">Choose template</Link></button> 
+           <button onClick= { handleClick }><Link className="Buttonlink" to="/editor/choosetemplate">Choose template</Link></button> 
            <button>Upload template</button>
            <button>Upload from URL</button>
            <button>Take photo</button>
