@@ -248,12 +248,16 @@ class Overview extends React.Component {
             </svg>
             <div className="meme-form">
               <FormGroup>
-                <Label for="toptext">Top Text</Label>
-                <input className="form-control" type="text" name="toptext" id="toptext" placeholder="Add text to the top" onChange={this.changeText} />
+                <Label for="toptext">Textbox 1</Label>
+                <input className="form-control" type="text" name="toptext" id="toptext" placeholder="Add text" onChange={this.changeText} />
               </FormGroup>
               <FormGroup>
-                <Label for="bottomtext">Bottom Text</Label>
-                <input className="form-control" type="text" name="bottomtext" id="bottomtext" placeholder="Add text to the bottom" onChange={this.changeText} />
+                <Label for="bottomtext">Textbox 2</Label>
+                <input className="form-control" type="text" name="bottomtext" id="bottomtext" placeholder="Add text" onChange={this.changeText} />
+              </FormGroup>
+              <FormGroup>
+                <Label for="toptext">Textbox 3</Label>
+                <input className="form-control" type="text" name="toptext" id="toptext" placeholder="Add text" onChange={this.changeText} />
               </FormGroup>
               <button onClick={() => this.convertSvgToImage()} className="btn btn-primary">Download Meme!</button>
             </div>
