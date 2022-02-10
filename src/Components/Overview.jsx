@@ -4,7 +4,7 @@ import { useLocation } from 'react-router-dom';
 function Overview(){
     const location = useLocation();
     const url = new URLSearchParams(location.search).get('url');
-
+    
     return <div>
         <h1> Great Job! Look at that meme!</h1>
         

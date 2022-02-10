@@ -4,7 +4,6 @@ import "./Navbar.css";
 
 function Navbar() {
     return <nav className="navbar bg-dark">
-        <h4><Link className="link" to="/">LandingPage</Link></h4>
         <h4><Link className="link" to="/overview">Overview</Link></h4>
         <h4><Link className="link" to="/editor">Editor</Link></h4>
         <h4><Link className="link" to="/account">Account</Link></h4>
