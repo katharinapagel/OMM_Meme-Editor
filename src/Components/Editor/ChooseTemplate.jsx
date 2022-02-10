@@ -1,5 +1,9 @@
 import React from 'react';
 import { Modal, ModalHeader, ModalBody, FormGroup, Label, NavbarBrand } from 'reactstrap';
+import "./Editor.css";
+import {Link} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 
 //this is the code for the template overview
@@ -28,6 +32,9 @@ const photos = [
   { src: '/images/penguin.png' }
 ];
 
+
+
+
 const initialState = {
   toptext: "",
   bottomtext: "",
@@ -43,15 +50,29 @@ class Overview extends React.Component {
   constructor() {
     super();
     this.state = {
+      allMemeImgs: [],
       currentImage: 0,
       modalIsOpen: false,
       currentImagebase64: null,
-      ...initialState
+      ...initialState,
+  
+     
     };
   }
 
+  //fetch meme from API - this api returns memes - response data.url is the meme url -> ich will das array photos [] durch das arry allMemeImgs ersetzen mit den memes der API (der code zum fetch sollte funktionieren, hat im anderen repo geklappt)
+
+  fetchMemes = () => {
+    fetch("https://api.imgflip.com/get_memes")
+      .then(data => data.json())
+      .then(response => {
+        const { memes } = response.data;
+        this.setState({ allMemeImgs: memes });
+      });
+  }
+
   openImage = (index) => {
-    const image = photos[index];
+    const image =photos[index]; // hier allMemeImgs
     const base_image = new Image();
     base_image.src = image.src;
     const base64 = this.getBase64Image(base_image);
@@ -60,6 +81,7 @@ class Overview extends React.Component {
       modalIsOpen: !prevState.modalIsOpen,
       currentImagebase64: base64,
       ...initialState
+     
     }));
   }
 
@@ -160,7 +182,8 @@ class Overview extends React.Component {
   }
 
   render() {
-    const image = photos[this.state.currentImage];
+
+    const image = photos[this.state.currentImage]; //hier allMemeImgs
     const base_image = new Image();
     base_image.src = image.src;
     var wrh = base_image.width / base_image.height;
