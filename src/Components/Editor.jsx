@@ -72,7 +72,7 @@ function Editor (){
         }
       }, [memeIndex, memes]);
 
-
+    //funtion for clear button refreshes the page wich clears the text, source: https://upmostly.com/tutorials/how-to-refresh-a-page-or-component-in-react
      const refreshPage = () =>{
         window.location.reload(false);
       }
