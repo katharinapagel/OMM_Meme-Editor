@@ -89,12 +89,7 @@ function Editor (){
         
         </div>
 
-        <div> 
-          <input
-            type="text"
-            
-          />
-        </div>
+    
     </div>
   
 
