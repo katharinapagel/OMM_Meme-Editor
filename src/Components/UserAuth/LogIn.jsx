@@ -31,7 +31,10 @@ const submitHandler = async (e) => {
             config
         );
 
-        localStorage.setItem("authToken", data.token);
+        console.log(data);
+        if (data != null) {localStorage.setItem("isAuthenticated", "true")}
+        else{localStorage.setItem("isAuthenticated", "false")};
+        
     }catch (error) {
         setError(error.response.data.message);
     }

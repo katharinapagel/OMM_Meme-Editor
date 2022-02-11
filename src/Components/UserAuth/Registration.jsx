@@ -28,7 +28,9 @@ const SignUp = () => {
                 config
             );
 
-            localStorage.setItem("userInfo", JSON.stringify(data));
+            console.log(data);
+            if (data != null) {localStorage.setItem("isAuthenticated", "true")}
+            else{localStorage.setItem("isAuthenticated", "false")};
         }catch (error) {
             setError(error.response.data.message);
         }
