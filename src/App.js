@@ -1,15 +1,15 @@
 import React from 'react';
 import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
 import Navbar from './Components/Navbar';
-import Editor from "./Components/Editor/Editor";
 import Overview from "./Components/Overview";
 import Account from "./Components/Account";
-import MemeGenerator from './Components/Editor/EditorYGWYS';
 import LandingPage from './Components/LandingPage';
-import ChooseTemplate from './Components/Editor/ChooseTemplate';
+import Editor from './Components/Editor';
+import CreatedMemeCopy from './Components/CreatedMemeClipboard';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
+
 
 function App() {
   return (
@@ -21,12 +21,20 @@ function App() {
       
       <Route path="/" element={<LandingPage />} />
       <Route path="/overview" element={<Overview />} />
-      <Route path="/editor" element={<Editor />} />
       <Route path="/account" element={<Account />} />
-      <Route path="editor/choosetemplate" element={<ChooseTemplate />} />
+      <Route path="/editor" element={<Editor />} />
+      <Route path="/memeCreatedCopy" element={<CreatedMemeCopy />} />
+      
+     
+      </Routes>
 
+      <Routes>
+        <Route exact path='/' element ={<Editor/>} />
+       
+       <Route path='/generated' element= {<CreatedMemeCopy/>} />
 
       </Routes>
+
     </Router>
 
     
