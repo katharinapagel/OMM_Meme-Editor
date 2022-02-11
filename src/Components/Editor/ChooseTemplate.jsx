@@ -28,10 +28,9 @@ const photos = [
   { src: '/images/sponge.png' },
   { src: '/images/dog.png' },
   { src: '/images/frust.png' },
-  { src: '/images/web.png' },
-  { src: '/images/penguin.png' }
+  { src: '/images/web.png'},
+  { src: '/images/penguin.png'}
 ];
-
 
 
 
@@ -60,16 +59,16 @@ class Overview extends React.Component {
     };
   }
 
-  //fetch meme from API - this api returns memes - response data.url is the meme url -> ich will das array photos [] durch das arry allMemeImgs ersetzen mit den memes der API (der code zum fetch sollte funktionieren, hat im anderen repo geklappt)
-
-  fetchMemes = () => {
+    fetchMemes  () {
     fetch("https://api.imgflip.com/get_memes")
       .then(data => data.json())
       .then(response => {
-        const { memes } = response.data;       //response.data.url = url des bildes
-        this.setState({ allMemeImgs: memes });
+        const { memes } = response.data.url; //response.data.url = url des bildes  
+        this.setState({ allMemeImgs: memes }); 
       });
   }
+
+  
 
   openImage = (index) => {
     const image =photos[index]; // hier allMemeImgs
