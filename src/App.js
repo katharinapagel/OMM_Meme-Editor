@@ -1,5 +1,5 @@
 import React from 'react';
-import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
+import {BrowserRouter as Router, Routes, Route, Navigate} from "react-router-dom";
 import Navbar from './Components/Navbar';
 import Editor from "./Components/Editor/Editor";
 import Overview from "./Components/Overview";
@@ -25,10 +25,10 @@ function App() {
       <Route path="/register" element={<Registration />} />
       
       {/*protected routes */}
-      <Route path="/overview" element={<Overview />} />
-      <Route path="/editor" element={<Editor />} />
-      <Route path="/account" element={<Account />} />
-      <Route path="editor/choosetemplate" element={<ChooseTemplate />} />
+      <Route path="/overview" element={<RequireAuth redirectTo="/"><Overview /></RequireAuth>} />
+      <Route path="/editor" element={<RequireAuth redirectTo="/"><Editor /></RequireAuth>} />
+      <Route path="/account" element={<RequireAuth redirectTo="/"><Account /></RequireAuth>} />
+      <Route path="editor/choosetemplate" element={<RequireAuth redirectTo="/"><ChooseTemplate /></RequireAuth>} />
 
 
 
@@ -39,6 +39,13 @@ function App() {
     
   )
   
+}
+
+function RequireAuth ({children, redirectTo}) {
+  let isAuthenticated = localStorage.getItem("isAuthenticated")
+;
+return isAuthenticated ? children : <Navigate to={redirectTo} />;
+
 }
 
 export default App;
