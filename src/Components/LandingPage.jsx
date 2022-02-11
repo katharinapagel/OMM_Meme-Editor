@@ -12,8 +12,8 @@ function LandingPage(){
             </Container>
             <Container>
             <Row>
-                <Col><Button variant="primary" type="LogIn"><Link className="link" to="/SignUp">Sign Up</Link></Button></Col> 
-                <Col><Button variant="primary" type="LogIn"><Link className="link" to="/LogIn">Log In</Link></Button></Col>
+                <Col><Button variant="primary" type="LogIn"><Link className="link" to="/register">Sign Up</Link></Button></Col> 
+                <Col><Button variant="primary" type="LogIn"><Link className="link" to="/login">Log In</Link></Button></Col>
             </Row>
         </Container>
     </div>
