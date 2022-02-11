@@ -73,6 +73,10 @@ function Editor (){
       }, [memeIndex, memes]);
 
 
+     const refreshPage = () =>{
+        window.location.reload(false);
+      }
+
     return (
     memes.length ? //check if meme is avaiable, button to choose meme
     <div> 
@@ -84,7 +88,10 @@ function Editor (){
                 <input type="text" onChange= {(e) =>updateCaption (e,index)} key={index} /> //onChange is called whenever user types in text in the input box
 
             ))
-        }
+
+          }
+        
+        <button onClick = {refreshPage} className={Editor.skip}> Clear Text </button>
         <img src= {memes[memeIndex].url} />
         
         </div>
