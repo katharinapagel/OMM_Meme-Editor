@@ -19,6 +19,7 @@ componentDidMount = () =>{
     axios.get("http://localhost:5000/api/meme/getMeme")
     .then((response) => {
         const data = response.data;
+        this.setState({ memes: data });
         console.log("memes received");
         console.log(data);
     })
@@ -30,9 +31,8 @@ componentDidMount = () =>{
 displayMemes = (memes) =>{
     if (!memes.length) return null;
 
-    return memes.map((displayMemes, index) => (
-        <div>
-        key={index},
+    return memes.map((memes, index) => (
+        <div key={index} >
        <h3>{memes.title} </h3> 
        <img src={memes.url} />
         </div>
@@ -56,10 +56,7 @@ return (
     </div>
     </div>
 
-
     );
 }
 }
-
-
 export default Overview;
