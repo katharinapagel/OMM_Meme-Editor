@@ -16,6 +16,9 @@ const languageOptions = [
   { label: 'Italiano', value: 'it-IT' },
 ];
 
+// varibale to define which textbox to use when insterting speech-to-text
+var textbox = -1;
+
 function Editor (){
    
     const [memes, setMemes] = useState([]);
@@ -41,32 +44,40 @@ function Editor (){
     };
     const {listen, listening, stop} = useSpeechRecognition({
       onResult:(result) => { 
-        const arr = value;
-        arr [textbox] = result;
-        setValue (arr);
+        updateCaption (result, textbox);
+        console.log(result);
+        console.log(textbox);
+        // const arr = value;
+        // arr [textbox] = result;
+        // setValue (arr);
         // console.log (textbox);
       }
     })
 
-    // varibale to define which textbox to use when insterting speech-to-text
-    var textbox = -1;
-
     // toggling microphone activity
     const toggle = (index) => {
+      console.log(index);
+      console.log(textbox);
+      if (blocked && index!=textbox){
+        return;
+      }
       textbox = index;
-      // console.log(index);
-      // console.log(textbox);
         if (blocked){
           stop(); 
           setBlocked (false);
+          document.getElementById("recordLabel" + index).innerHTML = "click me to record text";
         } else {
           listen({lang});
           setBlocked (true);
+          document.getElementById("recordLabel" + index).innerHTML = "click me to stop recording";
         } 
       }
                 
     const updateCaption = (e, index) => {
-        const text = e.target.value || ''; //text that user enters
+        const text = e || ''; //text that user enters
+        console.log(index);
+        console.log(e);
+        console.log(text);
         setCaptions(
           captions.map((c, i) => {
             if(index === i) {
@@ -185,11 +196,10 @@ function Editor (){
         {
             // onChange is called whenever user types in text in the input box
             captions.map((c,index)=> (
-                <div key={"div_"+index}> <input onChange= {(e) =>updateCaption (e,index)} key={index} 
-                        value = {value [index]} 
-                        onChange = {(e) => {value[index] = e.value}}
-                /> 
+                <div key={"div_"+index}> <input onChange= {(e) =>updateCaption (e.target.value,index)} key={index} 
+                       value = {captions[index]} /> 
                 <button onClick={ (e) => toggle(index)} key={"button_"+index}> <span role="img">🎤</span> </button>
+                <label> <i id={"recordLabel"+index}>click me to record text</i> </label>
                 </div>
             )) 
         }
