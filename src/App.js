@@ -5,9 +5,9 @@ import Editor from "./Components/Editor/Editor";
 import Overview from "./Components/Overview";
 import Account from "./Components/Account";
 import LandingPage from './Components/LandingPage';
-import ChooseTemplate from './Components/Editor/ChooseTemplate';
 import LogIn from './Components/UserAuth/LogIn';
 import Registration from './Components/UserAuth/Registration';
+import CreatedMemeCopy from './Components/CreatedMemeClipboard';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
@@ -28,12 +28,21 @@ function App() {
       <Route path="/overview" element={<RequireAuth redirectTo="/"><Overview /></RequireAuth>} />
       <Route path="/editor" element={<RequireAuth redirectTo="/"><Editor /></RequireAuth>} />
       <Route path="/account" element={<RequireAuth redirectTo="/"><Account /></RequireAuth>} />
-      <Route path="editor/choosetemplate" element={<RequireAuth redirectTo="/"><ChooseTemplate /></RequireAuth>} />
+      <Route path="/memeCreatedCopy" element={<CreatedMemeCopy />} />
+    
 
 
 
 
       </Routes>
+
+      <Routes>
+        <Route exact path='/' element ={<Editor/>} />
+       
+       <Route path='/generated' element= {<CreatedMemeCopy/>} />
+
+      </Routes>
+      
     </Router>
 
     
