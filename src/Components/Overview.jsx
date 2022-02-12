@@ -2,6 +2,7 @@
 import axios from 'axios';
 import React, { useEffect, useState, Component } from "react";
 
+//source: https://www.youtube.com/watch?v=Mfp94RjugWQ
 class Overview extends Component {
     constructor() {
         super();
@@ -32,8 +33,9 @@ displayMemes = (memes) =>{
     if (!memes.length) return null;
 
     return memes.map((memes, index) => (
-        <div key={index} >
+        <div key={index}>
        <h3>{memes.title} </h3> 
+       <h2>{memes.comments}</h2> 
        <img src={memes.url} />
         </div>
 
