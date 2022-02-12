@@ -15,24 +15,26 @@ function Editor (){
     const navigate = useNavigate();
 
     // Meme schema 
-    const [url, setUrl] =useState();
-    const [title, setTitle] = useState();
-    const [description, setDescription] = useState();
+    const [url, setUrl] =useState("");
+    const [title, setTitle] = useState("");
+    const [description, setDescription] = useState("");
     const [upvotes, setUpvotes]= useState();
     const [downvotes, setDownvotes] = useState();
-    const [comments, setComments]= useState ();
+    const [comments, setComments]= useState ("");
 
 
 
-     axios.post('http://localhost:5000/api/meme/postMeme',
+    axios.post('http://localhost:5000/api/meme/postMeme',
                 {
-                title,
                 url,
+                title,
+                description,
+                upvotes,
+                downvotes,
+                comments,
                 },
-                )
+                );
                 
-
-
     const updateCaption = (e, index) => {
         const text = e.target.value || ''; //text that user enters
         setCaptions(
@@ -97,12 +99,21 @@ function Editor (){
         window.location.reload(false);
       }
 
+    const randomNumber =() => {
+      const randomNumber = Math.floor(
+        Math.random() * memes.length
+      )
+      return randomNumber;
+    }
+
     return (
     memes.length ? //check if meme is avaiable, button to choose meme
+  
     <div> 
       <div>
         <button onClick ={generateMeme} className= {Editor.generate}> Generate </button> 
         <button onClick ={ () => setMemeIndex(memeIndex +1)} className= {Editor.skip}> Skip </button> 
+        <button onClick = {() => setMemeIndex (randomNumber)}> Random </button>
         {
             captions.map((c,index)=> (
                 <input type="text" onChange= {(e) =>updateCaption (e,index)} key={index} /> //onChange is called whenever user types in text in the input box

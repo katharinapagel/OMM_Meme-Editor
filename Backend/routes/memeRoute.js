@@ -7,18 +7,18 @@ const Meme = require("../models/Memes");
 router.post("/postMeme", async(req, res) => {
 
 
-    const newMeme = new Meme ({
+    const meme = Meme ({
         url: req.body.url,
         title:req.body.title,
         description:req.body.description,
         upvotes:req.body.upvotes,
         downvotes:req.body.downvotes,
-        comments:req.body.comments,
-    })
-    try {
-    await newMeme.save();
+        comments:req.body.comments
+    });
 
-    res.status(201).json(newMeme)
+    try { const savedMeme = await meme.save();
+
+    res.send(savedMeme);
     }
 
     catch (error){
@@ -29,20 +29,20 @@ router.post("/postMeme", async(req, res) => {
 });
 
 //get request
-router.get("/getMeme", async (req,res) => {
-    try {
-        const Memes = await Meme.find();
+// router.get("/getMeme", async (req,res) => {
+//     try {
+//         const Memes = await Meme.find();
 
-        res.status(200).json(Memes);
+//         res.status(200).json(Memes);
     
-    }
-    catch (error){
+//     }
+//     catch (error){
 
-        res.status(404).json({message:error.message});
-    }
+//         res.status(404).json({message:error.message});
+//     }
 
-}
-)
+// }
+// )
 
 module.exports = router;
 
