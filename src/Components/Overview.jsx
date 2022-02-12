@@ -1,5 +1,6 @@
 import React from "react";
 import { useLocation } from 'react-router-dom';
+import {useSpeechSynthesis} from 'react-speech-kit';
 
 function Overview(){
     const location = useLocation();

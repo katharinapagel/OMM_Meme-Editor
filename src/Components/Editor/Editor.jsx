@@ -6,6 +6,15 @@ import { Navigate, useNavigate } from 'react-router-dom';
 import "./Editor.css";
 import axios from 'axios';
 import {setState} from "react";
+import {useSpeechRecognition} from 'react-speech-kit'; 
+
+// https://github.com/MikeyParton/react-speech-kit/blob/master/examples/src/useSpeechRecognition.jsx 
+const languageOptions = [
+  { label: 'Deutsch', value: 'de-DE' },
+  { label: 'English', value: 'en-AU' },
+  { label: 'Français', value: 'fr-FR' },
+  { label: 'Italiano', value: 'it-IT' },
+];
 
 function Editor (){
    
@@ -23,8 +32,38 @@ function Editor (){
     const [downvotes, setDownvotes] = useState();
     const [comments, setComments]= useState ();
 
+    // https://github.com/MikeyParton/react-speech-kit/blob/master/examples/src/useSpeechRecognition.jsx
+    const [lang, setLang] = useState('en-AU');
+    const [value, setValue] = useState(["","","","","",""]);
+    const [blocked, setBlocked] = useState(false);
+    const changeLang = (event) => {
+      setLang(event.target.value);
+    };
+    const {listen, listening, stop} = useSpeechRecognition({
+      onResult:(result) => { 
+        const arr = value;
+        arr [textbox] = result;
+        setValue (arr);
+        // console.log (textbox);
+      }
+    })
 
+    // varibale to define which textbox to use when insterting speech-to-text
+    var textbox = -1;
 
+    // toggling microphone activity
+    const toggle = (index) => {
+      textbox = index;
+      // console.log(index);
+      // console.log(textbox);
+        if (blocked){
+          stop(); 
+          setBlocked (false);
+        } else {
+          listen({lang});
+          setBlocked (true);
+        } 
+      }
                 
     const updateCaption = (e, index) => {
         const text = e.target.value || ''; //text that user enters
@@ -120,20 +159,41 @@ function Editor (){
 
     return (
     memes.length ? //check if meme is avaiable, button to choose meme
-  
+      
+    // source for div "languageSelector" - https://github.com/MikeyParton/react-speech-kit/blob/master/examples/src/useSpeechRecognition.jsx
     <div> 
+      <div id="languageSelector">
+        <label htmlFor="language">Language</label>
+              <select
+                form="speech-recognition-form"
+                id="language"
+                value={lang}
+                onChange={changeLang}
+              >
+                {languageOptions.map((option) => (
+                  <option key={option.value} value={option.value}>
+                    {option.label}
+                  </option>
+                ))}
+              </select>
+      </div>
       <div>
         <button onClick ={generateMeme} className= {Editor.generate}> Generate </button> 
         <button onClick = {saveMeme} > Save </button>
         <button onClick ={ () => setMemeIndex(memeIndex +1)} className= {Editor.skip}> Skip </button> 
         <button onClick = {() => setMemeIndex (randomNumber)}> Random </button>
         {
+            // onChange is called whenever user types in text in the input box
             captions.map((c,index)=> (
-                <input type="text" onChange= {(e) =>updateCaption (e,index)} key={index} /> //onChange is called whenever user types in text in the input box
-
-            ))
-
-          }
+                <div key={"div_"+index}> <input onChange= {(e) =>updateCaption (e,index)} key={index} 
+                        value = {value [index]} 
+                        onChange = {(e) => {value[index] = e.value}}
+                /> 
+                <button onClick={ (e) => toggle(index)} key={"button_"+index}> <span role="img">🎤</span> </button>
+                </div>
+            )) 
+        }
+        {listening && <div> Go ahead I'm listening </div>}
         
         <button onClick = {refreshPage} className={Editor.skip}> Clear Text </button>
         <img src= {memes[memeIndex].url} />
