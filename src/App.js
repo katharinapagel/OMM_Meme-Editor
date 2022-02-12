@@ -8,6 +8,7 @@ import LandingPage from './Components/LandingPage';
 import LogIn from './Components/UserAuth/LogIn';
 import Registration from './Components/UserAuth/Registration';
 import CreatedMemeCopy from './Components/CreatedMemeClipboard';
+import SingleView from "./Components/SingleView";
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
@@ -28,6 +29,7 @@ function App() {
       <Route path="/overview" element={<RequireAuth redirectTo="/"><Overview /></RequireAuth>} />
       <Route path="/editor" element={<RequireAuth redirectTo="/"><Editor /></RequireAuth>} />
       <Route path="/account" element={<RequireAuth redirectTo="/"><Account /></RequireAuth>} />
+      <Route path="/singleView" element={<RequireAuth redirectTo="/"><SingleView /></RequireAuth>} />
       <Route path="/memeCreatedCopy" element={<CreatedMemeCopy />} />
     
 

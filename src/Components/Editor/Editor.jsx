@@ -5,6 +5,7 @@ import React, { useEffect, useState } from "react";
 import { Navigate, useNavigate } from 'react-router-dom';
 import "./Editor.css";
 import axios from 'axios';
+
 import {setState} from "react";
 import {useSpeechRecognition} from 'react-speech-kit'; 
 
@@ -34,6 +35,7 @@ function Editor (){
     const [upvotes, setUpvotes]= useState();
     const [downvotes, setDownvotes] = useState();
     const [comments, setComments]= useState ();
+    const [createdAt, setCreatedAt] =useState();
 
     // https://github.com/MikeyParton/react-speech-kit/blob/master/examples/src/useSpeechRecognition.jsx
     const [lang, setLang] = useState('en-AU');
@@ -117,6 +119,7 @@ function Editor (){
     upvotes,
     downvotes,
     comments,
+    createdAt
     }
     );
 
@@ -197,7 +200,7 @@ function Editor (){
         <img src= {memes[memeIndex].url} />
         
         </div>
-
+          <div>Set Titel of Meme</div>
         <div>
           <input type="text" onChange =  {(e) => setTitle (e.target.value) } />   
         </div> 

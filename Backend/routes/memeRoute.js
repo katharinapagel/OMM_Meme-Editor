@@ -13,7 +13,8 @@ router.post("/postMeme", async(req, res) => {
         description:req.body.description,
         upvotes:req.body.upvotes,
         downvotes:req.body.downvotes,
-        comments:req.body.comments
+        comments:req.body.comments,
+        createdAt:req.body.createdAt,
     });
 
     try { const savedMeme = await meme.save();
@@ -29,20 +30,20 @@ router.post("/postMeme", async(req, res) => {
 });
 
 //get request
-// router.get("/getMeme", async (req,res) => {
-//     try {
-//         const Memes = await Meme.find();
+router.get("/getMeme", async (req,res) => {
+    try {
+        const Memes = await Meme.find();
 
-//         res.status(200).json(Memes);
+        res.status(200).json(Memes);
     
-//     }
-//     catch (error){
+    }
+    catch (error){
 
-//         res.status(404).json({message:error.message});
-//     }
+        res.status(404).json({message:error.message});
+    }
 
-// }
-// )
+}
+)
 
 module.exports = router;
 
