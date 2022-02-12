@@ -4,6 +4,7 @@
 import React, { useEffect, useState } from "react";
 import { Navigate, useNavigate } from 'react-router-dom';
 import "./Editor.css";
+import axios from 'axios';
 
 function Editor (){
    
@@ -12,6 +13,25 @@ function Editor (){
     const [captions, setCaptions]= useState ([]); //arry of strings -> captions for each meme
     //insert shuffle memes function here to start with a random meme when page is refreshed (https://www.youtube.com/watch?v=SMzAcBEc6Zk&t=9s min 21)
     const navigate = useNavigate();
+
+    // Meme schema 
+    const [url, setUrl] =useState();
+    const [title, setTitle] = useState();
+    const [description, setDescription] = useState();
+    const [upvotes, setUpvotes]= useState();
+    const [downvotes, setDownvotes] = useState();
+    const [comments, setComments]= useState ();
+
+
+
+     axios.post('http://localhost:5000/api/meme/postMeme',
+                {
+                title,
+                url,
+                },
+                )
+                
+
 
     const updateCaption = (e, index) => {
         const text = e.target.value || ''; //text that user enters
@@ -46,7 +66,7 @@ function Editor (){
         }).then(res => {
             res.json().then (res => { //json is asychronis
               navigate(`/generated?url=${res.data.url}`); //here path to createdMeme view
-
+             setUrl(res.data.url); 
             }
 
             )
@@ -97,8 +117,8 @@ function Editor (){
         </div>
 
         <div>
-          <input type="text" />   
-        </div>
+          <input type="text" onChange =  {(e) => setTitle (e.target.value) } />   
+        </div> 
 
     
     </div>

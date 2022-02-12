@@ -1,19 +1,20 @@
 const mongoose = require("mongoose")
 
-//Shema is not complete yet
+//Schema for meme in mongoDB - source: https://www.youtube.com/watch?v=ngc9gnGgUdA - schema explained
+
 const MemeSchema = new mongoose.Schema({
-    id: {type: Number},
-    name: {type: String},
     url: {type: String},
-    width: {type: String},
-    height: {type: String},
-    title: {type: String},
-    description: {type: String},
-    upvotes:{type: Number},
-    downvotes:{type: Number},
-    comments: {type: String},
+    title: {type: String, default:"Title"},
+    description: {type: String, default:"This is a meme"},
+    upvotes:{type: Number, default:0},
+    downvotes:{type: Number, default:0},
+    comments: {type: String, default:"Nice comment"},
+
+    createdAt:{
+        type:Date,
+        default: new Date()
+    }
 
 });
 
-const MemeModel = mongoose.model("Memes", MemeSchema);
-module.exports = MemeModel;
+module.exports = mongoose.model("Memes", MemeSchema);
