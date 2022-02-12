@@ -8,7 +8,7 @@ import axios from 'axios';
 import {setState} from "react";
 import {useSpeechRecognition} from 'react-speech-kit'; 
 
-// https://github.com/MikeyParton/react-speech-kit/blob/master/examples/src/useSpeechRecognition.jsx 
+// provide possible languages for speech input - https://github.com/MikeyParton/react-speech-kit/blob/master/examples/src/useSpeechRecognition.jsx 
 const languageOptions = [
   { label: 'Deutsch', value: 'de-DE' },
   { label: 'English', value: 'en-AU' },
@@ -37,7 +37,6 @@ function Editor (){
 
     // https://github.com/MikeyParton/react-speech-kit/blob/master/examples/src/useSpeechRecognition.jsx
     const [lang, setLang] = useState('en-AU');
-    const [value, setValue] = useState(["","","","","",""]);
     const [blocked, setBlocked] = useState(false);
     const changeLang = (event) => {
       setLang(event.target.value);
@@ -45,19 +44,11 @@ function Editor (){
     const {listen, listening, stop} = useSpeechRecognition({
       onResult:(result) => { 
         updateCaption (result, textbox);
-        console.log(result);
-        console.log(textbox);
-        // const arr = value;
-        // arr [textbox] = result;
-        // setValue (arr);
-        // console.log (textbox);
       }
     })
 
     // toggling microphone activity
     const toggle = (index) => {
-      console.log(index);
-      console.log(textbox);
       if (blocked && index!=textbox){
         return;
       }
@@ -75,9 +66,6 @@ function Editor (){
                 
     const updateCaption = (e, index) => {
         const text = e || ''; //text that user enters
-        console.log(index);
-        console.log(e);
-        console.log(text);
         setCaptions(
           captions.map((c, i) => {
             if(index === i) {
