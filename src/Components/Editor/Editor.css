@@ -3,15 +3,11 @@
 }
 
 /*style of skip button to switch between memes */
-.Upload{
+.skip{
     background-color: black;
 }
 
 /*style of  button to generate memes */
 .generate {
     background-color: coral;
-}
-.Buttonlink{
-    color: black;
-    text-decoration: none;
 }

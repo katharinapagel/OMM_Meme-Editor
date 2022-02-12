@@ -6,12 +6,7 @@ function Overview(){
     const url = new URLSearchParams(location.search).get('url');
     
     return <div>
-        <h1> Great Job! Look at that meme!</h1>
-        
-        <div>
-        { url && <img alt='meme' src={url} /> }
-        </div>
-       
+        <h1>render all memes from the mongodb collection here </h1>
     </div>
     
 }
