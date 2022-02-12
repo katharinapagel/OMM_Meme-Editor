@@ -6,7 +6,7 @@ import { Navigate, useNavigate } from 'react-router-dom';
 import "./Editor.css";
 
 function Editor (){
-
+   
     const [memes, setMemes] = useState([]);
     const [memeIndex, setMemeIndex] = useState(0); //index for skipping through memes, to be used with skip button
     const [captions, setCaptions]= useState ([]); //arry of strings -> captions for each meme
@@ -94,6 +94,10 @@ function Editor (){
         <button onClick = {refreshPage} className={Editor.skip}> Clear Text </button>
         <img src= {memes[memeIndex].url} />
         
+        </div>
+
+        <div>
+          <input type="text" />   
         </div>
 
     
