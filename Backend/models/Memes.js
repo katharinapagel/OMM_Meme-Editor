@@ -8,12 +8,11 @@ const MemeSchema = new mongoose.Schema({
     description: {type: String, default:"This is a meme"},
     upvotes:{type: Number, default:0},
     downvotes:{type: Number, default:0},
-    comments: {type: String, default:"Nice comment"}
+    comments: {type: String, default:"Nice comment"},
 
-    // createdAt:{
-    //     type:Date,
-    //     default: new Date()
-    // }
+    createdAt:{
+        type:Date,default: new Date()
+    }
 
 });
 
