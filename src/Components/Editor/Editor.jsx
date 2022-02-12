@@ -5,6 +5,7 @@ import React, { useEffect, useState } from "react";
 import { Navigate, useNavigate } from 'react-router-dom';
 import "./Editor.css";
 import axios from 'axios';
+import {setState} from "react";
 
 function Editor (){
    
@@ -15,25 +16,15 @@ function Editor (){
     const navigate = useNavigate();
 
     // Meme schema 
-    const [url, setUrl] =useState("");
-    const [title, setTitle] = useState("");
-    const [description, setDescription] = useState("");
+    const [url, setUrl] =useState();
+    const [title, setTitle] = useState();
+    const [description, setDescription] = useState();
     const [upvotes, setUpvotes]= useState();
     const [downvotes, setDownvotes] = useState();
-    const [comments, setComments]= useState ("");
+    const [comments, setComments]= useState ();
 
 
 
-    axios.post('http://localhost:5000/api/meme/postMeme',
-                {
-                url,
-                title,
-                description,
-                upvotes,
-                downvotes,
-                comments,
-                },
-                );
                 
     const updateCaption = (e, index) => {
         const text = e.target.value || ''; //text that user enters
@@ -67,14 +58,35 @@ function Editor (){
 
         }).then(res => {
             res.json().then (res => { //json is asychronis
-              navigate(`/generated?url=${res.data.url}`); //here path to createdMeme view
-             setUrl(res.data.url); 
+              setUrl(res.data.url);
+              console.log(res.data.url);
+              
+             
             }
 
             )
         }
         )
+        
     };
+
+   const saveMeme = () => {
+    axios.post('http://localhost:5000/api/meme/postMeme',
+    {
+    url,
+    title,
+    description,
+    upvotes,
+    downvotes,
+    comments,
+    }
+    );
+
+    navigate(`/generated?url=${url}`); //here path to createdMeme view
+
+   }
+
+    
 
     //Fetch meme from API, imgflip website
     useEffect(()=>{
@@ -112,6 +124,7 @@ function Editor (){
     <div> 
       <div>
         <button onClick ={generateMeme} className= {Editor.generate}> Generate </button> 
+        <button onClick = {saveMeme} > Save </button>
         <button onClick ={ () => setMemeIndex(memeIndex +1)} className= {Editor.skip}> Skip </button> 
         <button onClick = {() => setMemeIndex (randomNumber)}> Random </button>
         {

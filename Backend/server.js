@@ -14,7 +14,7 @@ app.use(cors());
 app.use(express.json());
 app.use("/api/user", userRoute);
 app.use("/api/overview", overviewRoute);
-app.use("api/meme", memeRoute);
+app.use("/api/meme", memeRoute);
 
 //connection to mongodb database using the uri string from https://cloud.mongodb.com/v2/619692584f5bc30abb7c53e9#clusters/connect?clusterId=Cluster-1
 const uri = process.env.ATLAS_URI;
