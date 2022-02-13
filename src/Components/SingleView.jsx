@@ -1,13 +1,12 @@
 import axios from 'axios';
 import React, { useEffect, useState, Component } from "react";
 
-
 class Overview extends Component {
     constructor() {
     super();
     this.state = {
-    memes:[],
-    memeIndex:0
+        memes:[],
+        memeIndex:0
     };
 }
 
@@ -29,43 +28,40 @@ axios.get("http://localhost:5000/api/meme/getMeme")
 });
 };
 
-displayMeme = (memes) =>{
-    if (!memes.length) return null;
+//NaN error?? warum ist memeIndex keine Nummer???
+skipMeme = () => {
+    this.state.memeIndex = this.state.memeIndex +1;
+    if (this.state.memeIndex >= this.state.memes.length) {
+        this.state.memeIndex = 0;
+    }
+    this.displayMeme();
+    console.log(this.state.memeIndex)
+}
+previousMeme = () => {
+    this.state.memeIndex = this.state.memeIndex -1;
+    if (this.state.memeIndex < 0) {
+        this.state.memeIndex = this.state.memes.length -1;
+    }
+    this.displayMeme();
+    console.log(this.state.memeIndex)
+}
 
-    return memes.map((memes, index) => (
-        <div key={index}>
-       <h3>{memes.title} </h3> 
-       <h2>{memes.comments}</h2> 
-       <img src={memes.url} />
-        </div>
+displayMeme = () =>{
+    if (!this.state.memes.length) return null;
+    const meme = this.state.memes [this.state.memeIndex];
 
-    ));
-
+    document.getElementById("memeContainer").innerHTML = 
+    `<div> <h3>${meme.title} </h3> <h2>${meme.comments}</h2> <img src=${meme.url} /> </div>`
 };
 
-
-
-
     render(){
-     
-        
         return(
             <div>
-            <div>
-                <h3> Single Memes</h3>
+                <div> <h3> Single Memes</h3> </div>
+                <div id="memeContainer"> {this.displayMeme()} </div>
+                <div> <button onClick ={ () => this.skipMeme()} > Next </button> </div>
+                <div> <button onClick ={ () => this.previousMeme()} > Previous </button> </div>
             </div>
-
-            <div>
-            {this.displayMeme(this.state.memes)} 
-            </div>
-            
-            <div>
-            <button onClick ={ () => (this.memeIndex +1)} > Skip </button> 
-            </div>
-
-            </div>
-
-           
         )
     }
 }
