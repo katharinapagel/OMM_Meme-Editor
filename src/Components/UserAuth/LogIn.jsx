@@ -5,8 +5,7 @@ import {Container, Row, Col}  from 'react-bootstrap';
 import {Link} from "react-router-dom";
 import {useState} from 'react';
 import axios from 'axios';
-import { Navigate, useNavigate } from 'react-router-dom';
-
+import { navigate, useNavigate } from 'react-router-dom';
 
 //Login functionality: Checks whether the data in the Login form matches the user data stored in the database
 //Source: https://www.youtube.com/watch?v=iw5RSIflYGU&t=3489s
@@ -29,13 +28,14 @@ const submitHandler = async (e) => {
                 "Content-type":"application/json"
             }
         }
-            const{data} = await axios.post('http://localhost:5000/api/user/login',
+        const{data} = await axios.post('http://localhost:5000/api/user/login',
             {
             email,
             password,
             },
             config
         );
+        
         /*Part of protected routing: Users can only access the editor, orverview and single view, when they are logged in and have an valid token*/
         if (data != null) {
             localStorage.setItem("isAuthenticated", "true");
@@ -43,7 +43,7 @@ const submitHandler = async (e) => {
             localStorage.setItem("token", data);
             navigate(`/Editor`);
         }
-        else{localStorage.setItem("isAuthenticated", "false")};
+        else{localStorage.setItem("isAuthenticated", "false");};
         
     }catch (error) {
         setError(error.response.data.message);
