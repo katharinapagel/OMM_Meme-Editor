@@ -188,9 +188,9 @@ function Editor (){
             // onChange is called whenever user types in text in the input box
             captions.map((c,index)=> (
                 <div key={"div_"+index}> <input onChange= {(e) =>updateCaption (e.target.value,index)} key={index} 
-                       value = {captions[index]} /> 
-                <button onClick={ (e) => toggle(index)} key={"button_"+index}> <span role="img">🎤</span> </button>
-                <label> <i id={"recordLabel"+index}>click me to record text</i> </label>
+                      value = {captions[index]} /> 
+                      <button onClick={ (e) => toggle(index)} key={"button_"+index}> <span role="img">🎤</span> </button>
+                      <label> <i id={"recordLabel"+index}>click me to record text</i> </label>
                 </div>
             )) 
         }
