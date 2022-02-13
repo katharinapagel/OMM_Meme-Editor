@@ -19,7 +19,7 @@ function CreatedMemeCopy(){
 
     return <div className="">
         <h1> Great Job!</h1>
-        
+
         <div>
             {/* <div>
             <button onClick={copyLink} className="">
