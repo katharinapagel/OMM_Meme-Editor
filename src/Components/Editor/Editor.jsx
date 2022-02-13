@@ -37,6 +37,8 @@ function Editor (){
     const [comments, setComments]= useState ();
     const [createdAt, setCreatedAt] =useState();
 
+    const [disabledState, setDisabledState] = useState(true);
+
     // https://github.com/MikeyParton/react-speech-kit/blob/master/examples/src/useSpeechRecognition.jsx
     const [lang, setLang] = useState('en-AU');
     const [blocked, setBlocked] = useState(false);
@@ -100,10 +102,8 @@ function Editor (){
             res.json().then (res => { //json is asychronis
               setUrl(res.data.url);
               console.log(res.data.url);
-              
-             
+              setDisabledState(false);
             }
-
             )
         }
         )
@@ -111,16 +111,17 @@ function Editor (){
     };
 
    const saveMeme = () => {
-    axios.post('http://localhost:5000/api/meme/postMeme',
-    {
-    url,
-    title,
-    description,
-    upvotes,
-    downvotes,
-    comments,
-    createdAt
-    }
+      console.log("saveMeme");
+      axios.post('http://localhost:5000/api/meme/postMeme',
+      {
+      url,
+      title,
+      description,
+      upvotes,
+      downvotes,
+      comments,
+      createdAt
+      }
     );
 
     navigate(`/generated?url=${url}`); //here path to createdMeme view
@@ -147,9 +148,21 @@ function Editor (){
         }
       }, [memeIndex, memes]);
 
-    //funtion for clear button refreshes the page wich clears the text, source: https://upmostly.com/tutorials/how-to-refresh-a-page-or-component-in-react
-     const refreshPage = () =>{
-        window.location.reload(false);
+    //funtion for clear button clears the text
+     const clearAll = () =>{
+        setDisabledState(true);
+        setTitle("");
+        for (let j=0; j<captions.length; j++){
+          setCaptions(
+            captions.map((c, i) => {
+              if(j === i) {
+                return "";
+              } else {
+                return "";
+              }
+            })
+          );
+        } 
       }
 
     const randomNumber =() => {
@@ -180,40 +193,31 @@ function Editor (){
               </select>
       </div>
       <div>
-        <button onClick ={generateMeme} className= {Editor.generate}> Generate </button> 
-        <button onClick = {saveMeme} > Save </button>
-        <button onClick ={ () => setMemeIndex(memeIndex +1)} className= {Editor.skip}> Skip </button> 
-        <button onClick = {() => setMemeIndex (randomNumber)}> Random </button>
+        <button disabled = {!disabledState} onClick ={generateMeme} className= {Editor.generate}> Generate </button> 
+        <button id = "saveButton" disabled = {disabledState} onClick = {saveMeme} > Save </button>
+        <button disabled = {!disabledState} onClick ={ () => setMemeIndex(memeIndex +1)} className= {Editor.skip}> Skip </button> 
+        <button disabled = {!disabledState} onClick = {() => setMemeIndex (randomNumber)}> Random </button>
+        <p></p>
+        </div> <div> <b>Set Title of Meme:</b> <input disabled = {!disabledState} value={title} type="text" onChange =  {(e) => setTitle (e.target.value) } /></div> 
+        <p></p>
         {
             // onChange is called whenever user types in text in the input box
             captions.map((c,index)=> (
-                <div key={"div_"+index}> <input onChange= {(e) =>updateCaption (e.target.value,index)} key={index} 
+                <div key={"div_"+index}> <input disabled = {!disabledState} onChange= {(e) =>updateCaption (e.target.value,index)} key={index} 
                       value = {captions[index]} /> 
-                      <button onClick={ (e) => toggle(index)} key={"button_"+index}> <span role="img">🎤</span> </button>
+                      <button disabled = {!disabledState} onClick={ (e) => toggle(index)} key={"button_"+index}> <span role="img">🎤</span> </button>
                       <label> <i id={"recordLabel"+index}>click me to record text</i> </label>
                 </div>
             )) 
         }
         {listening && <div> Go ahead I'm listening </div>}
         
-        <button onClick = {refreshPage} className={Editor.skip}> Clear Text </button>
+        <button onClick = {clearAll} className={Editor.skip}> Clear Text </button>
         <img src= {memes[memeIndex].url} />
         
-        </div>
-          <div>Set Titel of Meme</div>
-        <div>
-          <input type="text" onChange =  {(e) => setTitle (e.target.value) } />   
-        </div> 
-
-    
+        
     </div>
-  
-
     : <></> 
-    
-    
     );
-
       };
-
     export default Editor;

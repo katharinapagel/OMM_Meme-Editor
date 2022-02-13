@@ -31,18 +31,11 @@ function App() {
       <Route path="/account" element={<RequireAuth redirectTo="/"><Account /></RequireAuth>} />
       <Route path="/singleView" element={<RequireAuth redirectTo="/"><SingleView /></RequireAuth>} />
       <Route path="/memeCreatedCopy" element={<CreatedMemeCopy />} />
-    
-
-
-
 
       </Routes>
 
       <Routes>
-        <Route exact path='/' element ={<Editor/>} />
-       
        <Route path='/generated' element= {<CreatedMemeCopy/>} />
-
       </Routes>
       
     </Router>

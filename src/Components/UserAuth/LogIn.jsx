@@ -5,12 +5,14 @@ import {Container, Row, Col}  from 'react-bootstrap';
 import {Link} from "react-router-dom";
 import {useState} from 'react';
 import axios from 'axios';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 const LogIn = () => {
 
 const [email, setEmail] = useState("")
 const [password, setPassword] = useState ("")
 const [error, setError] = useState(false);
+const navigate = useNavigate();
 
 
 const submitHandler = async (e) => {
@@ -32,7 +34,10 @@ const submitHandler = async (e) => {
         );
 
         console.log(data);
-        if (data != null) {localStorage.setItem("isAuthenticated", "true")}
+        if (data != null) {
+            localStorage.setItem("isAuthenticated", "true");
+            navigate(`/Editor`);
+        }
         else{localStorage.setItem("isAuthenticated", "false")};
         
     }catch (error) {
