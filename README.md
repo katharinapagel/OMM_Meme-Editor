@@ -11,6 +11,4 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 ## Learn More
 
-This is a fun 5 hour project inspired by imgur. Built with React and Bootstrap.
-
-You can add top and bottom text to a meme-template, move the text around and can save the image by downloading it.
+This is a project for the OMM LMU course. This meme editor allows the user to create memes.

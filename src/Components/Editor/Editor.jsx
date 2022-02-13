@@ -25,7 +25,7 @@ function Editor (){
     const [memes, setMemes] = useState([]);
     const [memeIndex, setMemeIndex] = useState(0); //index for skipping through memes, to be used with skip button
     const [captions, setCaptions]= useState ([]); //arry of strings -> captions for each meme
-    //insert shuffle memes function here to start with a random meme when page is refreshed (https://www.youtube.com/watch?v=SMzAcBEc6Zk&t=9s min 21)
+    
     const navigate = useNavigate();
 
     // Meme schema 
@@ -109,6 +109,7 @@ function Editor (){
         
     };
 
+    //http post request using axios
    const saveMeme = () => {
       axios.post('http://localhost:5000/api/meme/postMeme',
       {

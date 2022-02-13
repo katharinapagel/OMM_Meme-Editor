@@ -34,6 +34,7 @@ function App() {
 
       </Routes>
 
+      {/* Route from editor to CreatedMemeCopy*/}
       <Routes>
        <Route path='/generated' element= {<CreatedMemeCopy/>} />
       </Routes>

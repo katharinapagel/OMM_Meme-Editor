@@ -4,7 +4,8 @@ import React, { Component } from "react";
 const speechSynthesis = window.speechSynthesis;
 const voices = speechSynthesis.getVoices();
 
-//source: https://www.youtube.com/watch?v=Mfp94RjugWQ
+//this page retrieves the saved memes from the database and displays them 
+//the overview class is inspired by source: https://www.youtube.com/watch?v=Mfp94RjugWQ
 class Overview extends Component {
     constructor() {
         super();
@@ -19,7 +20,7 @@ class Overview extends Component {
         this.getMemes();
     };
 
-    //get memes from database
+    //get memes from database with http get request using axios
     getMemes =() =>{
         axios.get("http://localhost:5000/api/meme/getMeme")
         .then((response) => {
@@ -38,6 +39,7 @@ class Overview extends Component {
         speechSynthesis.speak (utterance);
     }
 
+    //the received array from the get request is mapped 
     displayMemes = (memes) =>{
         if (!memes.length) return null;
 
