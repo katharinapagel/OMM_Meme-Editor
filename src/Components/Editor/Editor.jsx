@@ -148,9 +148,21 @@ function Editor (){
         }
       }, [memeIndex, memes]);
 
-    //funtion for clear button refreshes the page wich clears the text, source: https://upmostly.com/tutorials/how-to-refresh-a-page-or-component-in-react
-     const refreshPage = () =>{
-        window.location.reload(false);
+    //funtion for clear button clears the text
+     const clearAll = () =>{
+        setDisabledState(true);
+        setTitle("");
+        for (let j=0; j<captions.length; j++){
+          setCaptions(
+            captions.map((c, i) => {
+              if(j === i) {
+                return "";
+              } else {
+                return "";
+              }
+            })
+          );
+        } 
       }
 
     const randomNumber =() => {
@@ -186,7 +198,7 @@ function Editor (){
         <button disabled = {!disabledState} onClick ={ () => setMemeIndex(memeIndex +1)} className= {Editor.skip}> Skip </button> 
         <button disabled = {!disabledState} onClick = {() => setMemeIndex (randomNumber)}> Random </button>
         <p></p>
-        </div> <div> <b>Set Title of Meme:</b> <input disabled = {!disabledState} type="text" onChange =  {(e) => setTitle (e.target.value) } /></div> 
+        </div> <div> <b>Set Title of Meme:</b> <input disabled = {!disabledState} value={title} type="text" onChange =  {(e) => setTitle (e.target.value) } /></div> 
         <p></p>
         {
             // onChange is called whenever user types in text in the input box
@@ -200,7 +212,7 @@ function Editor (){
         }
         {listening && <div> Go ahead I'm listening </div>}
         
-        <button onClick = {refreshPage} className={Editor.skip}> Clear Text </button>
+        <button onClick = {clearAll} className={Editor.skip}> Clear Text </button>
         <img src= {memes[memeIndex].url} />
         
         
