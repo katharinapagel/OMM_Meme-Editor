@@ -1,5 +1,7 @@
 //this page shows the meme after it is created 
 
+//the code is inspired by: https://github.com/portexe/MemeCreator
+
 import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import "./CreatedMemeClipboard.css";

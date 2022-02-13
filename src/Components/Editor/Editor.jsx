@@ -20,6 +20,7 @@ const languageOptions = [
 // varibale to define which textbox to use when insterting speech-to-text
 var textbox = -1;
 
+//the main functionality for the editor using the API is from: https://github.com/portexe/MemeCreator
 function Editor (){
    
     const [memes, setMemes] = useState([]);

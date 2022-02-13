@@ -1,3 +1,4 @@
+//the code for the mongoose connection is inspired by: https://www.youtube.com/watch?v=ngc9gnGgUdA
 const express = require("express");
 const cors= require("cors");
 const mongoose = require ("mongoose"); //database connection
