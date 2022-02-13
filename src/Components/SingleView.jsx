@@ -29,17 +29,25 @@ axios.get("http://localhost:5000/api/meme/getMeme")
 });
 };
 
-displayMeme = (memes) =>{
+//NaN error?? warum ist memeIndex keine Nummer???
+skipMeme = (memeIndex) => {
+    memeIndex = memeIndex +1;
+    console.log(memeIndex)
+}
+
+displayMeme = (memes, memeIndex) =>{
     if (!memes.length) return null;
 
-    return memes.map((memes, index) => (
-        <div key={index}>
-       <h3>{memes.title} </h3> 
-       <h2>{memes.comments}</h2> 
-       <img src={memes.url} />
+    const meme = memes [0];
+
+    return(
+        <div>
+       <h3>{meme.title} </h3> 
+       <h2>{meme.comments}</h2> 
+       <img src={meme.url} />
         </div>
 
-    ));
+    );
 
 };
 
@@ -60,7 +68,7 @@ displayMeme = (memes) =>{
             </div>
             
             <div>
-            <button onClick ={ () => (this.memeIndex +1)} > Skip </button> 
+            <button onClick ={ () => this.skipMeme()} > Skip </button> 
             </div>
 
             </div>
