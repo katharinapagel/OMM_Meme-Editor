@@ -26,8 +26,6 @@ getMemes =() =>{
     .then((response) => {
         const data = response.data;
         this.setState({ memes: data });
-        console.log("memes received");
-        console.log(data);
     })
     .catch(() => {
         console.log("error");
@@ -41,7 +39,6 @@ skipMeme = () => {
         this.state.memeIndex = 0;
     }
     this.displayMeme();
-    console.log(this.state.memeIndex)
 }
 previousMeme = () => {
     this.state.memeIndex = this.state.memeIndex -1;
@@ -49,7 +46,6 @@ previousMeme = () => {
         this.state.memeIndex = this.state.memes.length -1;
     }
     this.displayMeme();
-    console.log(this.state.memeIndex)
 }
 
  // https://developer.mozilla.org/en-US/docs/Web/API/SpeechSynthesis
@@ -67,7 +63,6 @@ displayMeme = () =>{
         `<div> <h4><b> Title: ${meme.title} </b> <button id="playButton" ><span role="img">🎤</span></button> <label> <i>click me to play title</i> </label></h4> <h5>${meme.comments}</h5> <img src=${meme.url} /> </div>`   
         var button = document.getElementById("playButton");
         button.addEventListener("click", () => {this.speak ("The title of the meme is " + meme.title);});
-        console.log(button);
 };
 
     render(){

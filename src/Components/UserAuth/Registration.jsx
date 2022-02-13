@@ -27,8 +27,6 @@ const SignUp = () => {
                 {name, email,password},
                 config
             );
-
-            console.log(data);
             if (data != null) {localStorage.setItem("isAuthenticated", "true")}
             else{localStorage.setItem("isAuthenticated", "false")};
         }catch (error) {

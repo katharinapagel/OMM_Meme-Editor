@@ -6,10 +6,7 @@ const verify = require("./privateRoutes");
 
 router.post("/userData", async (req, res) => {
     const user = await User.findOne({email: req.body.email})
-    console.log (user);
-    console.log(req);
     res.send(user);
-
 });
 
 //Register new Users: https://www.youtube.com/watch?v=2jqok-WgelI

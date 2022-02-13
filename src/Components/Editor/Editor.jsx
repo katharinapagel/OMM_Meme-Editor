@@ -101,7 +101,6 @@ function Editor (){
         }).then(res => {
             res.json().then (res => { //json is asychronis
               setUrl(res.data.url);
-              console.log(res.data.url);
               setDisabledState(false);
             }
             )
@@ -111,7 +110,6 @@ function Editor (){
     };
 
    const saveMeme = () => {
-      console.log("saveMeme");
       axios.post('http://localhost:5000/api/meme/postMeme',
       {
       url,

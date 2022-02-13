@@ -33,7 +33,6 @@ const submitHandler = async (e) => {
             config
         );
 
-        console.log(data);
         if (data != null) {
             localStorage.setItem("isAuthenticated", "true");
             localStorage.setItem("email", email);

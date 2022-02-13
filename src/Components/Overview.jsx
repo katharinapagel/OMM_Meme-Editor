@@ -25,8 +25,6 @@ class Overview extends Component {
         .then((response) => {
             const data = response.data;
             this.setState({ memes: data });
-            console.log("memes received");
-            console.log(data);
         })
         .catch(() => {
             console.log("error");
