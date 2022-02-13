@@ -212,7 +212,7 @@ function Editor (){
         }
         {listening && <div> Go ahead I'm listening </div>}
         
-        <button onClick = {clearAll} className={Editor.skip}> Clear Text </button>
+        <div><button onClick = {clearAll} className={Editor.skip}> Clear Text </button></div>
         <img src= {memes[memeIndex].url} />
         
         
