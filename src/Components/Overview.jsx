@@ -44,7 +44,7 @@ class Overview extends Component {
         return memes.map((memes, index) => (
             <div key={index}>
                 <h4><b>Title: {memes.title}</b>
-                    <button onClick = {()=> {this.speak ("The title of the meme is " + memes.title);}}><span role="img">🎤</span></button> 
+                    <button onClick = {()=> {this.speak (memes.title);}}><span role="img">🎤</span></button> 
                     <label> <i>click me to play title</i> </label>
                 </h4> 
                 <h5>Comment: {memes.comments}</h5> 
