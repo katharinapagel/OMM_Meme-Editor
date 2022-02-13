@@ -62,7 +62,7 @@ displayMeme = () =>{
     document.getElementById("memeContainer").innerHTML = 
         `<div> <h4><b> Title: ${meme.title} </b> <button id="playButton" ><span role="img">🎤</span></button> <label> <i>click me to play title</i> </label></h4> <h5>${meme.comments}</h5> <img src=${meme.url} /> </div>`   
         var button = document.getElementById("playButton");
-        button.addEventListener("click", () => {this.speak ("The title of the meme is " + meme.title);});
+        button.addEventListener("click", () => {this.speak (meme.title);});
 };
 
     render(){
