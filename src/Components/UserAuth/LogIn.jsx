@@ -36,6 +36,8 @@ const submitHandler = async (e) => {
         console.log(data);
         if (data != null) {
             localStorage.setItem("isAuthenticated", "true");
+            localStorage.setItem("email", email);
+            localStorage.setItem("token", data);
             navigate(`/Editor`);
         }
         else{localStorage.setItem("isAuthenticated", "false")};
