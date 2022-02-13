@@ -2,6 +2,7 @@ import React from "react";
 import {Link} from "react-router-dom";
 import "./Navbar.css";
 
+//The Navigationbar has links to all other websites of the meme generator
 function Navbar() {
     return <nav className="navbar bg-dark">
         <h4><Link className="link" to="/overview">Overview</Link></h4>

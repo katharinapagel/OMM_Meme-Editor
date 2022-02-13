@@ -9,7 +9,9 @@ router.post("/userData", async (req, res) => {
     res.send(user);
 });
 
-//Register new Users: https://www.youtube.com/watch?v=2jqok-WgelI
+//Source: https://www.youtube.com/watch?v=2jqok-WgelI
+
+//Register new Users
 router.post("/register", async (req, res) => {
     
     //Check if user is already in database
@@ -34,7 +36,7 @@ router.post("/register", async (req, res) => {
     }
 });
 
-//LogIn existing Users: https://www.youtube.com/watch?v=2jqok-WgelI
+//LogIn existing Users
 router.post("/login", async (req, res) => {
 
 //Check if user if email exists

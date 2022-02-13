@@ -6,6 +6,8 @@ import {Link} from 'react-router-dom';
 import {useState} from 'react';
 import axios from 'axios';
 
+//Sign Up functionality: Data from the registration form are stored in the database
+//Source: https://www.youtube.com/watch?v=iw5RSIflYGU&t=3489s
 const SignUp = () => {
     const [email, setEmail] = useState("");
     const [name, setName] = useState("");
@@ -27,6 +29,7 @@ const SignUp = () => {
                 {name, email,password},
                 config
             );
+            /*Part of protected routing: Users can only access the editor, orverview and single view, when they are logged in and have an valid token*/
             if (data != null) {localStorage.setItem("isAuthenticated", "true")}
             else{localStorage.setItem("isAuthenticated", "false")};
         }catch (error) {
@@ -35,6 +38,7 @@ const SignUp = () => {
 
     }
 
+    //sign up form
     return (
         <div>
             <Container>

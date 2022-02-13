@@ -3,6 +3,8 @@ import Button from "react-bootstrap/Button";
 import {Container, Row, Col} from 'react-bootstrap';
 import {Link} from "react-router-dom";
 
+
+//Landing page where users can either sign up, when they do not have an account, or login when they already have an account
 function LandingPage(){
     return <div>
         <Container>

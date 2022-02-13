@@ -7,6 +7,10 @@ import {useState} from 'react';
 import axios from 'axios';
 import { Navigate, useNavigate } from 'react-router-dom';
 
+
+//Login functionality: Checks whether the data in the Login form matches the user data stored in the database
+//Source: https://www.youtube.com/watch?v=iw5RSIflYGU&t=3489s
+
 const LogIn = () => {
 
 const [email, setEmail] = useState("")
@@ -32,7 +36,7 @@ const submitHandler = async (e) => {
             },
             config
         );
-
+        /*Part of protected routing: Users can only access the editor, orverview and single view, when they are logged in and have an valid token*/
         if (data != null) {
             localStorage.setItem("isAuthenticated", "true");
             localStorage.setItem("email", email);
@@ -46,6 +50,7 @@ const submitHandler = async (e) => {
     }
 }
 
+    //login form
     return(
         <div>
           <Container>

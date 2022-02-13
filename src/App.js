@@ -20,7 +20,7 @@ function App() {
       <Navbar />
 
       <Routes>
-      
+      {/*public routes*/}
       <Route path="/" element={<LandingPage />} />
       <Route path="/login" element={<LogIn />} />
       <Route path="/register" element={<Registration />} />
@@ -45,6 +45,7 @@ function App() {
   
 }
 
+//function checks whether the user is logged in/registered. If no, he will be redirected to the landing page 
 function RequireAuth ({children, redirectTo}) {
   let isAuthenticated = localStorage.getItem("isAuthenticated")
 ;
