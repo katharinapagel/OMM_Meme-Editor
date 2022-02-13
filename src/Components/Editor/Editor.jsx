@@ -204,16 +204,8 @@ function Editor (){
         <div>
           <input type="text" onChange =  {(e) => setTitle (e.target.value) } />   
         </div> 
-
-    
     </div>
-  
-
     : <></> 
-    
-    
     );
-
       };
-
     export default Editor;
