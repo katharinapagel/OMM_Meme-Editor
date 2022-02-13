@@ -68,7 +68,8 @@ function Editor (){
           document.getElementById("recordLabel" + index).innerHTML = "click me to stop recording";
         } 
       }
-                
+     
+    //update the captions of the image everytime the users enters text 
     const updateCaption = (e, index) => {
         const text = e || ''; //text that user enters
         setCaptions(
@@ -92,7 +93,7 @@ function Editor (){
         formData.append("template_id", currentMeme.id);
         captions.forEach((c,index) => formData.append(`boxes[${index}][text]`, c)); //body for formData
 
-        //Request to server
+        //fetch request to API to receive the meme with captions
 
         fetch("https://api.imgflip.com/caption_image", {
 
@@ -165,6 +166,7 @@ function Editor (){
         } 
       }
 
+    //generate a random number for random button
     const randomNumber =() => {
       const randomNumber = Math.floor(
         Math.random() * memes.length
@@ -191,8 +193,11 @@ function Editor (){
                   </option>
                 ))}
               </select>
+
+          {/* Buttons */}
       </div>
       <div>
+    
         <button disabled = {!disabledState} onClick ={generateMeme} className= {Editor.generate}> Generate </button> 
         <button id = "saveButton" disabled = {disabledState} onClick = {saveMeme} > Save </button>
         <button disabled = {!disabledState} onClick ={ () => setMemeIndex(memeIndex +1)} className= {Editor.skip}> Skip </button> 

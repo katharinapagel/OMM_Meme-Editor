@@ -1,3 +1,4 @@
+//this is a test route which is not used in the application but was used for testing
 const router = require ("express").Router();
 const verify = require("./privateRoutes");
 

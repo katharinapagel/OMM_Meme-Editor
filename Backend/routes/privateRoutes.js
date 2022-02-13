@@ -1,3 +1,5 @@
+//only logged in users can access private routes, users who have not logged should be denied access
+
 const jwt = require("jsonwebtoken");
 
 module.exports = function (req, res, next){
