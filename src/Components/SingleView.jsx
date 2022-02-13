@@ -1,13 +1,12 @@
 import axios from 'axios';
 import React, { useEffect, useState, Component } from "react";
 
-
 class Overview extends Component {
     constructor() {
     super();
     this.state = {
-    memes:[],
-    memeIndex:0
+        memes:[],
+        memeIndex:0
     };
 }
 
@@ -30,50 +29,39 @@ axios.get("http://localhost:5000/api/meme/getMeme")
 };
 
 //NaN error?? warum ist memeIndex keine Nummer???
-skipMeme = (memeIndex) => {
-    memeIndex = memeIndex +1;
-    console.log(memeIndex)
+skipMeme = () => {
+    this.state.memeIndex = this.state.memeIndex +1;
+    if (this.state.memeIndex >= this.state.memes.length) {
+        this.state.memeIndex = 0;
+    }
+    this.displayMeme();
+    console.log(this.state.memeIndex)
+}
+previousMeme = () => {
+    this.state.memeIndex = this.state.memeIndex -1;
+    if (this.state.memeIndex < 0) {
+        this.state.memeIndex = this.state.memes.length -1;
+    }
+    this.displayMeme();
+    console.log(this.state.memeIndex)
 }
 
-displayMeme = (memes, memeIndex) =>{
-    if (!memes.length) return null;
+displayMeme = () =>{
+    if (!this.state.memes.length) return null;
+    const meme = this.state.memes [this.state.memeIndex];
 
-    const meme = memes [0];
-
-    return(
-        <div>
-       <h3>{meme.title} </h3> 
-       <h2>{meme.comments}</h2> 
-       <img src={meme.url} />
-        </div>
-
-    );
-
+    document.getElementById("memeContainer").innerHTML = 
+    `<div> <h3>${meme.title} </h3> <h2>${meme.comments}</h2> <img src=${meme.url} /> </div>`
 };
 
-
-
-
     render(){
-     
-        
         return(
             <div>
-            <div>
-                <h3> Single Memes</h3>
+                <div> <h3> Single Memes</h3> </div>
+                <div id="memeContainer"> {this.displayMeme()} </div>
+                <div> <button onClick ={ () => this.skipMeme()} > Next </button> </div>
+                <div> <button onClick ={ () => this.previousMeme()} > Previous </button> </div>
             </div>
-
-            <div>
-            {this.displayMeme(this.state.memes)} 
-            </div>
-            
-            <div>
-            <button onClick ={ () => this.skipMeme()} > Skip </button> 
-            </div>
-
-            </div>
-
-           
         )
     }
 }
