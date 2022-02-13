@@ -4,11 +4,11 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const verify = require("./privateRoutes");
 
-router.get("/userData", verify, async (req, res) => {
+router.post("/userData", async (req, res) => {
     const user = await User.findOne({email: req.body.email})
+    console.log (user);
+    console.log(req);
     res.send(user);
-
-    
 
 });
 
