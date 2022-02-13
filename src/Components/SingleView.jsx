@@ -64,7 +64,7 @@ displayMeme = () =>{
     const meme = this.state.memes [this.state.memeIndex];
 
     document.getElementById("memeContainer").innerHTML = 
-        `<div> <h4><b> Title: ${meme.title} </b> <button id="playButton"><span role="img">🎤</span></button> <label> <i>click me to play title</i> </label></h4> <h5>${meme.comments}</h5> <img src=${meme.url} /> </div>`   
+        `<div> <h4><b> Title: ${meme.title} </b> <button id="playButton" ><span role="img">🎤</span></button> <label> <i>click me to play title</i> </label></h4> <h5>${meme.comments}</h5> <img src=${meme.url} /> </div>`   
         var button = document.getElementById("playButton");
         button.addEventListener("click", () => {this.speak ("The title of the meme is " + meme.title);});
         console.log(button);
@@ -89,10 +89,10 @@ displayMeme = () =>{
                             </option>
                         ))}
                     </select>
-                <div> <h3> Single Memes</h3> </div>
+                <div> <h3> Single Memes </h3> </div>
                 <div id="memeContainer"> {this.displayMeme()} </div>
-                <div> <button onClick ={ () => this.skipMeme()} > Next </button> </div>
-                <div> <button onClick ={ () => this.previousMeme()} > Previous </button> </div>
+                <p></p>
+                <div> <button style = {{width: 100, height:40, backgroundColor: "lightblue"}} onClick ={ () => this.previousMeme()} > Previous </button><button style = {{marginLeft: 50, width: 100, height:40, backgroundColor: "lightblue"}} onClick ={ () => this.skipMeme()} > Next </button> </div>
             </div>
         )
     }
